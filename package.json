@@ -1,0 +1,24 @@
+{
+  "name": "lambda-with-rds-example",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "repository": "https://github.com/robertLichtnow/lambda-with-rds-example",
+  "author": "Matheus Robert Lichtnow <matheusrobert8@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/index.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.12.0",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "add": "^2.0.6",
+    "express": "^4.17.1",
+    "http-status-codes": "^2.1.4",
+    "yarn": "^1.22.17"
+  }
+}
