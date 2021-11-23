@@ -16,5 +16,5 @@
       "#/*": ["tests/*"]
     }
   },
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "infrastructure"]
 }

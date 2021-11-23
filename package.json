@@ -7,18 +7,28 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/index.ts"
+    "start": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infrastructure/http/index.ts"
   },
   "devDependencies": {
+    "@types/aws-serverless-express": "^3.3.5",
     "@types/express": "^4.17.13",
     "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.12.0",
     "typescript": "^4.5.2"
   },
   "dependencies": {
+    "@types/cors": "^2.8.12",
     "add": "^2.0.6",
+    "aws-lambda": "^1.0.7",
+    "aws-serverless-express": "^3.4.0",
+    "class-transformer": "^0.3.1",
+    "class-validator": "^0.12.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "http-status-codes": "^2.1.4",
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.1.13",
+    "routing-controllers": "^0.9.0",
     "yarn": "^1.22.17"
   }
 }
