@@ -1,11 +1,14 @@
+import 'reflect-metadata';
+import '~/index';
+
 import { Handler } from 'aws-lambda';
-import { createServer, proxy } from 'aws-serverless-express';
+import serverlessExpress from '@vendia/serverless-express';
 import { server } from '~/shared/infrastructure/http/server';
 
-const lambdaEventHandler = createServer(server);
+const lambdaEventHandler = serverlessExpress({ app: server });
 
-export const handler: Handler = (event, context) => {
+export const handler: Handler = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
 
-  proxy(lambdaEventHandler, event, context);
+  return lambdaEventHandler(event, context, callback);
 };
