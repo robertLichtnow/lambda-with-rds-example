@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 dist
+yarn-error.log
 
 dist.zip
 
@@ -13,3 +14,6 @@ dist.zip
 
 # Sensitive variables
 *.tfvars
+
+# Environment variables
+.env

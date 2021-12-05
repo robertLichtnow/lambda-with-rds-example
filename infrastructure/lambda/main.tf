@@ -51,6 +51,12 @@ resource "aws_lambda_function" "app" {
     security_group_ids = var.security_group_ids
   }
 
+  environment {
+    variables = {
+      NODE_ENV = "production"
+    }
+  }
+
   lifecycle {
     create_before_destroy = true
   }

@@ -20,3 +20,7 @@ output "base_url" {
 output "distributable_path" {
   value = module.lambda.distributable_path
 }
+
+output "db_endpoint" {
+  value = module.database.db_endpoint
+}

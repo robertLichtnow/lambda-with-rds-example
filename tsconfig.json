@@ -5,6 +5,7 @@
     "baseUrl": ".",
     "outDir": "./dist",
     "target": "ES2020",
+    "lib": ["ES6"],
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
