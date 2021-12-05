@@ -1,3 +1,4 @@
+# --- lambda/main.tf ---
 
 resource "null_resource" "build_lambda_app" {
   triggers = {
@@ -45,6 +46,14 @@ resource "aws_lambda_function" "app" {
   source_code_hash = data.archive_file.lambda_dist.output_base64sha256
 
   role = aws_iam_role.lambda_exec.arn
+  vpc_config {
+    subnet_ids         = var.private_subnet_ids
+    security_group_ids = var.security_group_ids
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_iam_role" "lambda_exec" {
@@ -63,6 +72,11 @@ resource "aws_iam_role" "lambda_exec" {
       }
     ]
   })
+}
+
+resource "aws_iam_role_policy_attachment" "AWSLambdaVPCAccessExecutionRole" {
+  role       = aws_iam_role.lambda_exec.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }
 
 resource "aws_cloudwatch_log_group" "app" {

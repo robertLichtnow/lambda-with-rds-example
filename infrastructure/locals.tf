@@ -18,5 +18,17 @@ locals {
         }
       }
     }
+    app = {
+      name        = "lambda_sg"
+      description = "Security Group for Lambda Access"
+      ingress = {
+        lambda = {
+          from        = 0
+          to          = 0
+          protocol    = -1
+          cidr_blocks = [local.vpc_cidr]
+        }
+      }
+    }
   }
 }
