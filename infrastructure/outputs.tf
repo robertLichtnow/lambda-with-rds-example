@@ -8,8 +8,8 @@ output "lambda_function_name" {
   description = "The name of the lambda function."
 }
 
-output "lambda_invoke_arn" { 
-  value = module.lambda.invoke_arn
+output "lambda_invoke_arn" {
+  value       = module.lambda.invoke_arn
   description = "The Invoke ARN for the lambda function."
 }
 
