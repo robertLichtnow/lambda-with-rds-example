@@ -13,13 +13,12 @@ This project does not use RDS Proxy, even though it is a great alternative for m
   - Lambda function
   - S3 bucket to store the code of the function
 - Automated build and deployment of lambda function on each `terraform apply`
--
-
-## What still needs to be done
 - Manage VPC + private subnets for RDS
 - The RDS instance itself
 - Lambda environment variables (needed for database access)
-  - Create credentials during `terraform apply` with random string
+  - Currently living inside `.env` file
+  - Database hostname is generated after first `terraform apply`
+## What still needs to be done
 - Run migrations when lambda is deployed
 - Create seed data for one table
 - Create API to retrieve given seed data

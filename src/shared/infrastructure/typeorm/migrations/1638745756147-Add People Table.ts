@@ -7,23 +7,23 @@ export class AddPeopleTable1638745756147 implements MigrationInterface {
       columns: [
         {
           name: 'id',
-          type: 'VARCHAR(32)',
+          type: 'varchar',
           isPrimary: true,
-          default: 'UUID()'
+          generationStrategy: 'uuid',
         },
         {
           name: 'name',
-          type: 'VARCHAR'
+          type: 'varchar'
         },
         {
           name: 'email',
-          type: 'VARCHAR',
+          type: 'varchar',
           isUnique: true,
         },
         {
           name: 'created_at',
           type: 'timestamp',
-          default: 'NOW()'
+          default: 'now()'
         }
       ],
     }));
