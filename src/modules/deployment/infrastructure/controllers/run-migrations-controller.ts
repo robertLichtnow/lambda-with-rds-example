@@ -10,7 +10,7 @@ export class RunMigrationsController {
 
   @Get('/deploy/run-migrations')
   public async runMigrations(@Res() response: Response): Promise<Response> {
-    const migrations = await getConnection().runMigrations({
+    await getConnection().runMigrations({
       transaction: 'none',
     });
 

@@ -30,11 +30,24 @@ This project does not use RDS Proxy, even though it is a great alternative for m
 - `yarn`
 - `terraform`
 - `A configured AWS profile with admin access`
+- `Docker`
 
-## Deploying
+## Running locally
 
 ```bash
+$ cp .env.example .env
+$ docker-compose up --build
+```
+## Deploying to AWS
+
+```bash
+$ touch infrastructure/terraform.tfvars
+# Fill in the dbname, dbuser and dbpassword variables
 $ terraform apply --auto-approve
+# Get database endpoint from output
+$ cp .env.example .env
+# Fill in the data for .env file (database hostname will be generated after first apply and will be in the output)
+$ terraform apply --auto-approve # To update the lambda environment variables
 ```
 
 ## Consuming API
