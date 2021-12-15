@@ -6,8 +6,9 @@ orbs:
 
 jobs:
   deploy-prod:
-    docker:
-      - image: cimg/node:12.16
+    machine:
+      image: ubuntu-2004:202111-0
+    resource_class: medium
     working_directory: ~/
     environment:
       AWS_ACCESS_KEY_ID: ''
