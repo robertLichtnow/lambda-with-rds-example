@@ -1,0 +1,28 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7
+
+jobs:
+  deploy-prod:
+    docker:
+      - image: cimg/node:12.16
+    working_directory: ~/
+    environment:
+      AWS_ACCESS_KEY_ID: ''
+      AWS_SECRET_ACCESS_KEY: ''
+      AWS_DEFAULT_REGION: ''
+    steps:
+      - run:
+          name: Deploys code to production
+          command: terraform apply --auto-approve
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy-prod:
+        filters:
+          branches:
+            only:
+              - master
