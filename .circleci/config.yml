@@ -11,6 +11,10 @@ jobs:
       - checkout
       - run:
           command: >-
+            sh ./infrastructure/scripts/configure-tfvars.sh
+          name: Configure .tfvars file
+      - run:
+          command: >-
             echo "credentials \"app.terraform.io\" {token =
             \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
           name: Create .terraformrc file locally
