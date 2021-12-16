@@ -18,6 +18,8 @@ This project does not use RDS Proxy, even though it is a great alternative for m
 - Lambda environment variables (needed for database access)
   - Currently living inside `.env` file
   - Database hostname is generated after first `terraform apply`
+- CI/CD to deploy on push to master
+
 ## What still needs to be done
 - Run migrations when lambda is deployed
 - Create seed data for one table
