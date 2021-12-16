@@ -1,0 +1,36 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7
+  terraform: circleci/terraform@3.0.0
+
+jobs:
+  deploy-prod:
+    executor: terraform/default
+    steps:
+      - checkout
+      - run:
+          command: >-
+            echo "credentials \"app.terraform.io\" {token =
+            \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
+          name: Create .terraformrc file locally
+      - terraform/init:
+          path: ./infrastructure
+      - terraform/validate:
+          path: ./infrastructure
+      - terraform/fmt:
+          path: ./infrastructure
+      - terraform/plan:
+          path: ./infrastructure
+      - terraform/apply:
+          path: ./infrastructure
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy-prod:
+        filters:
+          branches:
+            only:
+              - master
