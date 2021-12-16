@@ -6,11 +6,6 @@ orbs:
 
 jobs:
   deploy-prod:
-    environment:
-      AWS_ACCESS_KEY_ID: ''
-      AWS_SECRET_ACCESS_KEY: ''
-      AWS_DEFAULT_REGION: ''
-
     executor: terraform/default
     steps:
       - checkout
