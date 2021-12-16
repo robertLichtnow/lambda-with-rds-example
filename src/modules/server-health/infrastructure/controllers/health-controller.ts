@@ -8,6 +8,6 @@ import { Get, JsonController, Res } from 'routing-controllers';
 export class HealthController {
   @Get('/health')
   public health(@Res() response: Response): Response {
-    return response.sendStatus(StatusCodes.OK);
+    return response.status(StatusCodes.OK).send({ health: 'OK' });
   }
 }
