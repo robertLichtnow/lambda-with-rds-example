@@ -1,24 +1,10 @@
 # --- lambda/main.tf ---
 
-resource "null_resource" "build_lambda_app" {
-  triggers = {
-    always_run = "${timestamp()}"
-  }
-
-  provisioner "local-exec" {
-    command = "cd ${path.cwd}/.. && yarn build"
-  }
-}
-
 data "archive_file" "lambda_dist" {
   type = "zip"
 
-  source_dir  = "${path.cwd}/../dist"
-  output_path = "${path.cwd}/lambda/dist.zip"
-
-  depends_on = [
-    null_resource.build_lambda_app
-  ]
+  source_dir  = "${path.root}/../dist"
+  output_path = "${path.root}/lambda/dist.zip"
 }
 
 resource "aws_s3_bucket_object" "lambda_app" {

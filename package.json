@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infrastructure/http/index.ts",
-    "build": "rm -rf dist && tsc && tscpaths -p tsconfig.json -s ./ -o ./dist",
+    "build": "rm -rf dist && sh ./scripts/create-env-file.sh && tsc && tscpaths -p tsconfig.json -s ./ -o ./dist",
     "postbuild": "cp package.json yarn.lock .env ormconfig.js dist && cd dist && yarn install --prod",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },

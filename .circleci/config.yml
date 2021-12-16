@@ -4,11 +4,30 @@ orbs:
   node: circleci/node@4.7
   terraform: circleci/terraform@3.0.0
 
-jobs:
+jobs:  
+  install-and-build:
+    docker:
+      - image: cimg/node:12.16
+    steps:
+      - checkout
+      - run:
+          command: yarn
+          name: Install dependencies
+      - run:
+          command: yarn build
+          name: Build distributable
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - dist
   deploy-prod:
     executor: terraform/default
     steps:
       - checkout
+      - attach_workspace:
+          at: ./
+      - run:
+          command: ls -a
       - run:
           command: >-
             sh ./infrastructure/scripts/configure-tfvars.sh
@@ -33,8 +52,11 @@ workflows:
   version: 2
   deploy:
     jobs:
+      - install-and-build
       - deploy-prod:
-        filters:
-          branches:
-            only:
-              - master
+          requires:
+            - install-and-build
+          filters:
+            branches:
+              only:
+                - master
